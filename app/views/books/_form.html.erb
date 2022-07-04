@@ -24,15 +24,15 @@
 </div>
 
 <div>
-    <%= form.label :admin_id %> <br>
-    <%= form.number_field :admin_id %> <br>
-     <% book.errors.full_messages_for(:admin_id).each  do |message| %>
-    <div><%= message %></div>
-    <% end %>
+    <%= collection_select(:book ,:admin_id , Admin.all , :id , :name , {prompt:true}) %>
 </div>
+<%= form.file_field :image %>
 
 <div>
-    <%= form.submit %>
+    <%= form.submit "Save" %>
+</div>
+<div>
+    <Button><%= link_to "Back", books_path  %></Button>
 </div>
 
 <% end%>
