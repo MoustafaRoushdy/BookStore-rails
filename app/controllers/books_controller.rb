@@ -17,6 +17,7 @@ class BooksController < ApplicationController
 
     def create 
         @book = Book.new(book_params)
+        @book.admin_id = current_admin.id
         @book.save!
         if @book.save!
             redirect_to books_path
@@ -26,6 +27,7 @@ class BooksController < ApplicationController
     end
 
     def edit 
+        # authorize! :edit, @role
         @book = Book.find(params[:id])
     end
 
@@ -38,6 +40,9 @@ class BooksController < ApplicationController
             render :edit , status::unprocessable_entity
         end
     end
+    def current_user
+        current_admin
+      end
             
 
 
